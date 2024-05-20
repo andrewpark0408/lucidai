@@ -3,9 +3,8 @@ import {
     createRouteMatcher
   } from '@clerk/nextjs/server';
   
-  const isProtectedRoute = createRouteMatcher([
-    '/',
-  ]);
+  const publicRoutes = ['/api/webhooks/clerk'];
+  const isProtectedRoute = createRouteMatcher(publicRoutes);
   
   export default clerkMiddleware((auth, req) => {
     if (isProtectedRoute(req)) auth().protect();
